@@ -29,7 +29,7 @@ FM Towns Self-Boot Kit is currently at version [1.0](https://github.com/DerekPas
 4. Drag said folder onto `fmt_selfboot.exe` and watch as prompts and status message appear until process is complete.
 
 ## Example Scenario
-In this example scenario, a self-booting CD-ROM disc image for the floppy game "Gorby no Pipeline Daisakusen" will be generated.
+In this example scenario, a self-booting CD-ROM disc image for the floppy game "Gorby no Pipeline Daisakusen" will be generated. It's important to mention that the method used here is surely overkill, and the entirety of Towns System Software is not required on a single CD-ROM solely to launch this game. However, this scenario still serves as a good learning tool for those wishing to leverage FM Towns Self-Boot Kit.
 
 First, the [HxC Floppy Emulator](https://hxc2001.com/download/floppy_drive_emulator/) software will be used to open the `Gorby no Pipeline Daisakusen.hfe` floppy disk image. After opening it, the "Disk Browser" feature will be used to see the contents of the disk image. Then, "Get Files" is clicked to extract its contents to a folder.
 
