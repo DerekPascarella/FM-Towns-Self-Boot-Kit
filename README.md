@@ -89,7 +89,7 @@ In this example, line 12 will be replaced with `RUN386.EXE GOL.EXP` to launch th
 17 - :EXIT
 ```
 
-After saving changes to `AUTOEXEC.BAT`, it's time to drag that folder onto `fmt_selfboot.exe` for processing and ultimately generating an ISO.
+After saving changes to `AUTOEXEC.BAT`, it's time to drag that folder onto `fmt_selfboot.exe` for processing and ultimately generating an ISO. Note that the program can also be executed via Windows console (e.g., `C:\path\to\fmt_selfboot.exe C:\path\to\disc\files\`), or via Linux/UNIX terminal (e.g., `perl /path/to/fmt_selfboot.pl /path/to/disc/files/`).
 
 ![](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/blob/main/images/tool_screenshot.png?raw=true)
 
