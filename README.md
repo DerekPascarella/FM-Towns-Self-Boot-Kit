@@ -13,14 +13,14 @@ Example uses include...
 TOC will go here.
 
 ## Current Version
-FM Towns Self-Boot Kit is currently at version [1.0](URL GOES HERE).
+FM Towns Self-Boot Kit is currently at version [1.0](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/releases/download/1.0/FM.Towns.Self-Boot.Kit.v1.0.zip).
 
 ## Changelog
 - **Version 1.0 (2025-08-11)**
     - Initial release.
  
 ## Usage
-1. Extract the [latest release package](URL GOES HERE) to any folder of your choosing.
+1. Extract the [latest release package](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/releases/download/1.0/FM.Towns.Self-Boot.Kit.v1.0.zip) to any folder of your choosing.
 2. Prepare a separate folder with contents to be used to generate an ISO.
    - Note that `IO.SYS` must reside in this folder in order to be treated as a proper FM Towns disc when the IPL loader patch step occurs.
 4. Drag said folder onto `fmt_selfboot.exe` and watch as prompts and status message appear until process is complete.
