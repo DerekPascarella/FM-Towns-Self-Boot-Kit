@@ -45,7 +45,7 @@ Once complete, both the original game's floppy disk files and the Towns System S
 
 The next step requires copying all files from the extracted floppy disk folder to the extracted CD-ROM folder. If prompted at any point to overwrite existing files in the Towns System Software folder, it's up to the user's discretion which files should remain, and which should be overwritten.
 
-Once all files are copied and reside together in one folder, it's time for the user must investigate the `AUTOEXEC.BAT` file. Consider the default `AUTOEXEC.BAT` from Towns System Software Version 2.1 L40.
+Once all files are copied and reside together in one folder, it's time for the user to investigate the `AUTOEXEC.BAT` file. Consider the default `AUTOEXEC.BAT` from Towns System Software Version 2.1 L40.
 
 ```
 01 - ECHO OFF
