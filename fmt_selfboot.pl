@@ -85,7 +85,7 @@ print "Written by Derek Pascarella (ateam)\n\n";
 print "Detected OS: " . $os . "\n\n";
 
 # Change to program's folder.
-chdir $working_folder or die "Program unable to switch to \"$working_folder\" folder: $!\n";
+chdir $working_folder;
 
 # Prompt user for ISO file name.
 print "This program will generate an ISO in the following folder:\n\n";
@@ -123,7 +123,7 @@ if($? != 0)
 
 	print "\nFM Towns Self-Boot Kit v" . $version . "\n";
 	print "Written by Derek Pascarella (ateam)\n\n";
-	die "Error: mkisofs failed with exit code $exit_code (see full command below).\n" . $mkisofs_command . "\n";
+	print "Error: mkisofs failed with exit code $exit_code (see full command below).\n" . $mkisofs_command . "\n";
 	print "\nPress Enter to close this window...\n";
 	<STDIN>;
 	exit;
