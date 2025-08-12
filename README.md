@@ -107,7 +107,7 @@ In this example, line 12 will be replaced with `RUN386.EXE GOL.EXP` to launch th
 
 After saving changes to `AUTOEXEC.BAT`, it's time to drag that folder onto `fmt_selfboot.exe` for processing and ultimately generating an ISO. Note that the program can also be executed via Windows console (e.g., `C:\path\to\fmt_selfboot.exe C:\path\to\disc\files\`), or via Linux/UNIX terminal (e.g., `perl /path/to/fmt_selfboot.pl /path/to/disc/files/`).
 
-FM Towns Self-Boot Kit can also run without user input by adding a second parameter with the target ISO file name (e.g., `C:\path\to\fmt_selfboot.exe C:\path\to\disc\files\ game.iso`).
+FM Towns Self-Boot Kit can also run without user input by adding a second parameter with the target ISO file name (e.g., `C:\path\to\fmt_selfboot.exe C:\path\to\disc\files\ game.iso`). By adding a third input parameter (`unattended`), the program will close without prompting the user to press Enter first (e.g., `C:\path\to\fmt_selfboot.exe C:\path\to\disc\files\ game.iso unattended`).
 
 ![](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/blob/main/images/tool_screenshot.png?raw=true)
 
