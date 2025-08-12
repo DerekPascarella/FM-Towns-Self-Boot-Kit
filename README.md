@@ -2,7 +2,7 @@
 
 A kit to build self-booting ISOs for the FM Towns.
 
-This tool can be used to take a set of files (among which must include `IO.SYS`) and produce them from an ISO bootable on the FM Towns/FM Towns Marty, either via burned CD-R or ODE.
+This tool can be used to take a set of files (among which must include `IO.SYS`) and produce from them an ISO bootable on the FM Towns/FM Towns Marty, either via burned CD-R or ODE.
 
 Example uses include...
 - Modifying existing FM Towns software.
