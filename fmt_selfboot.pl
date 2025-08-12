@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# FM Towns Self-Boot Kit v1.0
+# FM Towns Self-Boot Kit v1.1
 # Written by Derek Pascarella (ateam)
 #
 # A kit to build self-booting ISOs for the FM Towns.
@@ -8,10 +8,11 @@
 # Include necessary modules.
 use strict;
 use FindBin;
+use File::Find;
 use File::Which;
 
 # Set version.
-my $version = "1.0";
+my $version = "1.1";
 
 # Detect OS type.
 my $os = "Linux";
@@ -28,70 +29,81 @@ $working_folder =~ s/\//\\/g if($os eq "Windows");
 # Perform sanity check.
 if($os eq "Linux" && !which("mkisofs"))
 {
-	print "\nFM Towns Self-Boot Kit v" . $version . "\n";
-	print "Written by Derek Pascarella (ateam)\n\n";
-	print "Error: The mkisofs command is not in your path\n";
-	print "\nPress Enter to close this window...\n";
-	<STDIN>;
+	print_error("The mkisofs command is not in your path.");
 	exit;
 }
 elsif($os eq "Windows" && !-e $working_folder . "/helpers/mkisofs.exe")
 {
-	print "\nFM Towns Self-Boot Kit v" . $version . "\n";
-	print "Written by Derek Pascarella (ateam)\n\n";
-	print "Error: The mkisofs.exe utility is missing from the \"helpers\" folder.\n";
-	print "\nPress Enter to close this window...\n";
-	<STDIN>;
+	print_error("The mkisofs.exe utility is missing from the \"helpers\" folder.");
 	exit;
 }
 elsif(!-e $working_folder . "/helpers/IPL.BIN")
 {
-	print "\nFM Towns Self-Boot Kit v" . $version . "\n";
-	print "Written by Derek Pascarella (ateam)\n\n";
-	print "Error: IPL.BIN missing from the \"helpers\" folder.\n";
-	print "\nPress Enter to close this window...\n";
-	<STDIN>;
+	print_error("IPL.BIN missing from the \"helpers\" folder.");
 	exit;
 }
 
 # Initialize input variables.
 my $input_folder = $ARGV[0];
+my $iso_name = $ARGV[1];
 
 # Throw error if input folder is unreadable, not a folder, or doesn't exist.
 if(!-e $input_folder || !-d $input_folder || !-R $input_folder)
 {
-	print "\nFM Towns Self-Boot Kit v" . $version . "\n";
-	print "Written by Derek Pascarella (ateam)\n\n";
-	print "Error: Specified input folder is either unreadable, not a folder, or doesn't exist.\n";
-	print "\nPress Enter to close this window...\n";
-	<STDIN>;
+	print_error("Specified input folder is either unreadable, not a folder, or doesn't exist.");
 	exit;
 }
 
 # Throw error if IO.SYS not found in input folder.
 if(!-e $input_folder . "/IO.SYS")
 {
-	print "\nFM Towns Self-Boot Kit v" . $version . "\n";
-	print "Written by Derek Pascarella (ateam)\n\n";
-	print "Error: Specified input folder does not contain the necessary \"IO.SYS\" file.\n";
-	print "\nPress Enter to close this window...\n";
-	<STDIN>;
+	print_error("Specified input folder does not contain the necessary \"IO.SYS\" file.");
 	exit;
 }
+
+# Initialize file/folder counters.
+my $total_files = 0;
+my $total_folders = 0;
+
+# Count total number of files/folders in input folder.
+find(
+	sub {
+		return if $File::Find::name eq $input_folder;
+
+		if(-d $_)
+		{
+			$total_folders ++;
+		}
+		elsif(-f $_)
+		{
+			$total_files ++;
+		}
+	},
+	$input_folder
+);
 
 # Status message.
 print "\nFM Towns Self-Boot Kit v" . $version . "\n";
 print "Written by Derek Pascarella (ateam)\n\n";
 print "Detected OS: " . $os . "\n\n";
+print "Using input path " . $input_folder . ":\n";
+print " - Total folder(s): " . $total_folders . "\n";
+print " - Total file(s): " . $total_files . "\n\n";
 
 # Change to program's folder.
 chdir $working_folder;
 
-# Prompt user for ISO file name.
-print "This program will generate an ISO in the following folder:\n\n";
-print $working_folder . "\n\n";
-print "Please specify a file name for the ISO (e.g., \"Game.iso\"): ";
-chop(my $iso_name = <STDIN>);
+# Status message.
+print "This program will generate an ISO in the following folder:\n";
+print " - " . $working_folder . "\n\n";
+
+# Prompt user for ISO file name if none passed as input parameter.
+if($iso_name eq "")
+{
+	print "Please specify a file name for the ISO (e.g., \"Game.iso\"): ";
+	chop($iso_name = <STDIN>);
+	print "\n";
+}
 
 # Clean up user-specified ISO file name.
 $iso_name =~ s/^\s+|\s+$//g;
@@ -111,7 +123,7 @@ else
 }
 
 # Status message.
-print "\n -> Generating ISO...\n\n";
+print " -> Generating ISO...\n\n";
 
 # Execute mkisofs command.
 system($mkisofs_command);
@@ -120,12 +132,7 @@ system($mkisofs_command);
 if($? != 0)
 {
 	my $exit_code = $? >> 8;
-
-	print "\nFM Towns Self-Boot Kit v" . $version . "\n";
-	print "Written by Derek Pascarella (ateam)\n\n";
-	print "Error: mkisofs failed with exit code $exit_code (see full command below).\n" . $mkisofs_command . "\n";
-	print "\nPress Enter to close this window...\n";
-	<STDIN>;
+	print_error("Error: mkisofs failed with exit code " . $exit_code , " (see full command below).\n" . $mkisofs_command);
 	exit;
 }
 
@@ -377,4 +384,16 @@ sub patch_bytes
 	}
 
 	close($filehandle);
+}
+
+# Subroutine to print a standard formatted error message.
+sub print_error
+{
+	my $message = $_[0];
+
+	print "\nFM Towns Self-Boot Kit v" . $version . "\n";
+	print "Written by Derek Pascarella (ateam)\n\n";
+	print "Error: " . $message . "\n";
+	print "\nPress Enter to close this window...\n";
+	<STDIN>;
 }
