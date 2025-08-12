@@ -19,6 +19,10 @@ Example uses include...
 FM Towns Self-Boot Kit is currently at version [1.0](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/releases/download/1.0/FM.Towns.Self-Boot.Kit.v1.0.zip).
 
 ## Changelog
+- **Version 1.1 (2025-08-12)**
+    - Improved status messages for enhanced readability.
+    - New commandline parameter for target ISO file name added in order to run FM Towns Self-Boot Kit from commandline without requiremenet for user interaction.
+    - New commandline parameter to run in unattended/non-interactive mode.
 - **Version 1.0 (2025-08-11)**
     - Initial release.
  
@@ -27,6 +31,18 @@ FM Towns Self-Boot Kit is currently at version [1.0](https://github.com/DerekPas
 2. Prepare a separate folder with contents to be used to generate an ISO.
    - Note that `IO.SYS` must reside in this folder in order to be treated as a proper FM Towns disc when the IPL loader patch step occurs.
 4. Drag said folder onto `fmt_selfboot.exe` and watch as prompts and status message appear until process is complete.
+
+FM Towns Self-Boot kit is designed for easy use directly from Windows File Explorer. However, it can also run in unattended/non-interactive mode.
+
+```
+fmt_selfboot.exe <disc_image_files> <iso_file_name> unattended
+```
+
+For example, in order to build `GAME.ISO` from the files in `C:\game_data\` without being prompted to enter an ISO file name, and without being prompted to press Enter to close the program, the following command would be used.
+
+```
+fmt_selfboot.exe C:\game_data\ GAME.ISO unattended
+```
 
 ## Example Scenario
 In this example scenario, a self-booting CD-ROM disc image for the floppy game "Gorby no Pipeline Daisakusen" will be generated. It's important to mention that the method used here is surely overkill, and the entirety of Towns System Software is not required on a single CD-ROM solely to launch this game. However, this scenario still serves as a good learning tool for those wishing to leverage FM Towns Self-Boot Kit.
@@ -90,6 +106,8 @@ In this example, line 12 will be replaced with `RUN386.EXE GOL.EXP` to launch th
 ```
 
 After saving changes to `AUTOEXEC.BAT`, it's time to drag that folder onto `fmt_selfboot.exe` for processing and ultimately generating an ISO. Note that the program can also be executed via Windows console (e.g., `C:\path\to\fmt_selfboot.exe C:\path\to\disc\files\`), or via Linux/UNIX terminal (e.g., `perl /path/to/fmt_selfboot.pl /path/to/disc/files/`).
+
+FM Towns Self-Boot Kit can also run without user input by adding a second parameter with the target ISO file name (e.g., `C:\path\to\fmt_selfboot.exe C:\path\to\disc\files\ game.iso`).
 
 ![](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/blob/main/images/tool_screenshot.png?raw=true)
 
