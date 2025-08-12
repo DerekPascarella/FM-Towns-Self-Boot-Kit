@@ -46,6 +46,7 @@ elsif(!-e $working_folder . "/helpers/IPL.BIN")
 # Initialize input variables.
 my $input_folder = $ARGV[0];
 my $iso_name = $ARGV[1];
+my $non_interactive = $ARGV[2];
 
 # Throw error if input folder is unreadable, not a folder, or doesn't exist.
 if(!-e $input_folder || !-d $input_folder || !-R $input_folder)
@@ -150,9 +151,14 @@ print " -> IPL injected successfully!\n";
 print "     - LBA: $lba\n";
 print "     - Sectors: " . $sectors . "\n";
 print "     - IO.SYS size: " . $bytes . " bytes\n\n";
-print "Your FM Towns ISO is ready for use!\n";
-print "\nPress Enter to close this window...\n";
-<STDIN>;
+print "Your FM Towns ISO is ready for use!\n\n";
+
+# Wait to close window.
+if($non_interactive ne "unattended")
+{
+	print "Press Enter to close this window...\n";
+	<STDIN>;
+}
 
 # Subroutine to locate IO.SYS (or a specified filename) in the ISO9660 root,
 # compute its starting LBA and 2048-byte sector count, and write those values
