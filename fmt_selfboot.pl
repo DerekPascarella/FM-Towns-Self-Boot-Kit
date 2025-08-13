@@ -69,7 +69,7 @@ my $total_folders = 0;
 # Count total number of files/folders in input folder.
 find(
 	sub {
-		return if $File::Find::name eq $input_folder;
+		return if($File::Find::name eq $input_folder);
 
 		if(-d $_)
 		{
@@ -91,13 +91,6 @@ print "Using input path " . $input_folder . ":\n";
 print " - Total folder(s): " . $total_folders . "\n";
 print " - Total file(s): " . $total_files . "\n\n";
 
-# Change to program's folder.
-chdir $working_folder;
-
-# Status message.
-print "This program will generate an ISO in the following folder:\n";
-print " - " . $working_folder . "\n\n";
-
 # Prompt user for ISO file name if none passed as input parameter.
 if($iso_name eq "")
 {
@@ -110,6 +103,13 @@ if($iso_name eq "")
 $iso_name =~ s/^\s+|\s+$//g;
 $iso_name =~ s/\.(?!iso$)[^.]+$//i;
 $iso_name .= ".iso" unless($iso_name =~ /\.iso$/i);
+
+# Change to program's folder.
+chdir $working_folder;
+
+# Status message.
+print "This program will generate " . $iso_name . " in the following folder:\n";
+print " - " . $working_folder . "\n\n";
 
 # Construct mkisofs command for both Windows (with helper utility) and Linux.
 my $mkisofs_command;
@@ -142,7 +142,7 @@ print " -> ISO successfully generated!\n\n";
 print " -> Injecting IPL loader into ISO...\n\n";
 
 # Patch ISO with IPL loader.
-my $ipl_bin = &read_bytes("helpers/IPL.BIN");
+my $ipl_bin = read_bytes("helpers/IPL.BIN");
 patch_bytes($working_folder . "/" . $iso_name, $ipl_bin, 0);
 my ($lba, $sectors, $bytes) = ipl_patch($working_folder . "/" . $iso_name);
 
