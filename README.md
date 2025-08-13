@@ -10,10 +10,10 @@ Example uses include...
 - Creating CD-ROM conversions of hard-drive-install-only games.
 
 ## Table of Contents
-- [Current Version](#current-version)
-- [Changelog](#changelog)
-- [Usage](#usage)
-- [Example Scenario](#example-scenario)
+1. [Current Version](#current-version)
+2. [Changelog](#changelog)
+3. [Usage](#usage)
+4. [Example Scenario](#example-scenario)
 
 ## Current Version
 FM Towns Self-Boot Kit is currently at version [1.1](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/releases/download/1.1/FM.Towns.Self-Boot.Kit.v1.1.zip).
