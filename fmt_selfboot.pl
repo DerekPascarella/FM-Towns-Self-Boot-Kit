@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# FM Towns Self-Boot Kit v1.1
+# FM Towns Self-Boot Kit v1.2
 # Written by Derek Pascarella (ateam)
 #
 # A kit to build self-booting ISOs for the FM Towns.
@@ -12,7 +12,7 @@ use File::Find;
 use File::Which;
 
 # Set version.
-my $version = "1.1";
+my $version = "1.2";
 
 # Detect OS type.
 my $os = "Linux";
@@ -46,7 +46,6 @@ elsif(!-e $working_folder . "/helpers/IPL.BIN")
 # Initialize input variables.
 my $input_folder = $ARGV[0];
 my $iso_name = $ARGV[1];
-my $non_interactive = $ARGV[2];
 
 # Throw error if input folder is unreadable, not a folder, or doesn't exist.
 if(!-e $input_folder || !-d $input_folder || !-R $input_folder)
@@ -92,8 +91,12 @@ print " - Total folder(s): " . $total_folders . "\n";
 print " - Total file(s): " . $total_files . "\n\n";
 
 # Prompt user for ISO file name if none passed as input parameter.
+my $non_interactive = 0;
+
 if($iso_name eq "")
 {
+	$non_interactive = 1;
+
 	print "Please specify a file name for the ISO (e.g., \"Game.iso\"): ";
 	chop($iso_name = <STDIN>);
 	print "\n";
@@ -154,7 +157,7 @@ print "     - IO.SYS size: " . $bytes . " bytes\n\n";
 print "Your FM Towns ISO is ready for use!\n\n";
 
 # Wait to close window.
-if($non_interactive ne "unattended")
+if($non_interactive)
 {
 	print "Press Enter to close this window...\n";
 	<STDIN>;
