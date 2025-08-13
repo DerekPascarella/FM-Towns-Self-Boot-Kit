@@ -303,7 +303,7 @@ sub find_iso_entry
 				if(exists $accept{$name_uc})
 				{
 					# Store little-endian extent LBA.
-					my $file_lba = unpack("V", substr($dr,  2, 4));
+					my $file_lba = unpack("V", substr($dr, 2, 4));
 
 					# Store little-endian file size.
 					my $file_size = unpack("V", substr($dr, 10, 4));
