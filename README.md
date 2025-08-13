@@ -16,7 +16,7 @@ Example uses include...
 4. [Example Scenario](#example-scenario)
 
 ## Current Version
-FM Towns Self-Boot Kit is currently at version [1.2](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/releases/download/1.1/FM.Towns.Self-Boot.Kit.v1.2.zip).
+FM Towns Self-Boot Kit is currently at version [1.2](https://github.com/DerekPascarella/FM-Towns-Self-Boot-Kit/releases/download/1.2/FM.Towns.Self-Boot.Kit.v1.2.zip).
 
 ## Changelog
 - **Version 1.2 (2025-08-13)**
